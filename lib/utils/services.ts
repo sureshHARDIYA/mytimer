@@ -3,7 +3,7 @@ import axios from 'axios';
 import { timeTrackSchema } from '../validations/time-track';
 
 const tagsApiUrl = '/api/user/tags/';
-const projectsApiUrl = '/api/user/projects/';
+const projectsApiUrl = '/api/user/projects';
 const timeTracksApiUrl = '/api/user/time-tracks/';
 
 export async function createUser(

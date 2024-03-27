@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Footer.module.scss';
 
 export function Footer({ homePage }: { homePage?: boolean }) {
@@ -8,7 +7,7 @@ export function Footer({ homePage }: { homePage?: boolean }) {
     <footer className={`${styles.footer} ${homePage && styles['bg-white']}`}>
       <div className={styles.content}>
         &copy; {currentYear} by{' '}
-        <a href="https://github.com/murad-sh">Murad Shahbazov</a>. All rights
+        <a href="https://github.com/sureshHARDIYA">Suresh Kumar Mukhiya</a>. All rights
         reserved.
       </div>
     </footer>
