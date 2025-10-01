@@ -1,5 +1,4 @@
-import React from 'react';
-import styles from './Features.module.scss';
+import React from "react";
 import {
   ClockIcon,
   BarChart3Icon,
@@ -7,7 +6,9 @@ import {
   TagIcon,
   MonitorIcon,
   MailIcon,
-} from 'lucide-react';
+} from "lucide-react";
+
+import styles from "./Features.module.scss";
 
 const Features = () => {
   return (

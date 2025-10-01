@@ -1,7 +1,7 @@
 import React from "react";
 import { ITimeTrack } from "@/models/time-track";
 import styles from "./TimeTrackItem.module.scss";
-import { getTrackDuration } from "@/lib/utils/date";
+import { getTrackDuration, formatDate } from "@/lib/utils/date";
 import TrackOperations from "../TrackOperations";
 
 interface Props {
@@ -21,6 +21,7 @@ const TimeTrackItem = ({ timeTrack }: Props) => {
             {timeTrack.notes.length > 300
               ? timeTrack.notes.slice(0, 297) + "..."
               : timeTrack.notes}
+            {` • ${formatDate(new Date(timeTrack.start).getTime())}`}
           </div>
         )}
       </div>

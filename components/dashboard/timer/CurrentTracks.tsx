@@ -6,7 +6,12 @@ import Skeleton from "@/components/ui/Skeleton";
 import styles from "./CurrentTracks.module.scss";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import { useTodayTracks } from "@/hooks/use-api-hooks";
-import { calculateTotalDuration, getTrackDuration } from "@/lib/utils/date";
+import {
+  calculateTotalDuration,
+  getTrackDuration,
+  formatDate,
+} from "@/lib/utils/date";
+import { FolderDot, InfoIcon, Tag } from "lucide-react";
 
 const CurrentTracks = () => {
   const { timeTracks, isLoading, error } = useTodayTracks();
@@ -43,15 +48,19 @@ const CurrentTracks = () => {
             <div className={styles.content}>
               <div className={styles.mainInfo}>
                 <span>{track.title}</span>
-                <span className={styles.tag}>{track.tag || "No tag"}</span>
+                <span className={styles.tag}>
+                  <Tag size={14} />
+                  {track.tag || "No tag"}
+                </span>
               </div>
-              {track.notes && (
-                <div className={styles.notes}>
-                  {track.notes.length > 300
-                    ? track.notes.slice(0, 297) + "..."
-                    : track.notes}
-                </div>
-              )}
+              <div className={styles.notes}>
+                {track.notes
+                  ? (track.notes.length > 300
+                      ? track.notes.slice(0, 297) + "..."
+                      : track.notes) + " • "
+                  : ""}
+                {formatDate(new Date(track.start).getTime())}
+              </div>
             </div>
             <div className={styles.control}>
               <span className={styles.duration}>
