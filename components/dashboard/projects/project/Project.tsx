@@ -37,6 +37,17 @@ const Project = () => {
     );
   }
 
+  if (!project) {
+    return (
+      <Layout>
+        <div className={styles.container}>
+          <h2 className={styles.title}>Project not found</h2>
+          <p>This project could not be loaded.</p>
+        </div>
+      </Layout>
+    );
+  }
+
   const changeView = (view: "overview" | "detailed") => {
     setCurrentView(view);
   };
@@ -46,7 +57,7 @@ const Project = () => {
       <div className={styles.container}>
         <h2 className={styles.title}>{project.projectTitle}</h2>
 
-        {project.timeTracks.length === 0 ? (
+        {!project.timeTracks || project.timeTracks.length === 0 ? (
           <EmptyProject />
         ) : (
           <>
@@ -88,13 +99,13 @@ const Project = () => {
 export default Project;
 
 const OverviewView = ({ project }: { project: any }) => {
-  const tagUsage = aggregateTagTimeUsage(project.timeTracks);
+  const tagUsage = aggregateTagTimeUsage(project.timeTracks || []);
 
   return (
     <div className={styles.overview}>
       <p className={styles.total}>
         Total time spent on this project:
-        <span>{calculateTotalDuration(project.timeTracks)}</span>
+        <span>{calculateTotalDuration(project.timeTracks || [])}</span>
       </p>
 
       <div className={styles.charts}>
@@ -111,10 +122,10 @@ const DetailedView = ({ project }: { project: any }) => {
     <div className={styles.detailed}>
       <p className={styles.total}>
         Total time spent on this project:
-        <span>{calculateTotalDuration(project.timeTracks)}</span>
+        <span>{calculateTotalDuration(project.timeTracks || [])}</span>
       </p>
       <ul className={styles.list}>
-        {project.timeTracks.map((track: ITimeTrack) => (
+        {(project.timeTracks || []).map((track: ITimeTrack) => (
           <li key={track._id.toString()}>
             <p className={styles.description}>{track.title}</p>
             <span>
