@@ -51,8 +51,9 @@ export default async function handler(
               projectId !== "" &&
               mongoose.Types.ObjectId.isValid(projectId)
             ) {
-              timeTrack.projectId =
-                new mongoose.Types.ObjectId(projectId) as any;
+              timeTrack.projectId = new mongoose.Types.ObjectId(
+                projectId
+              ) as any;
             } else {
               timeTrack.projectId = undefined;
             }

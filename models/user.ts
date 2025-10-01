@@ -72,7 +72,7 @@ userSchema.methods.updateTimeTrackWithProject = async function (
       projectId !== "" &&
       mongoose.Types.ObjectId.isValid(projectId)
     ) {
-  result.projectId = new mongoose.Types.ObjectId(projectId) as any;
+      result.projectId = new mongoose.Types.ObjectId(projectId) as any;
     } else {
       result.projectId = undefined;
     }

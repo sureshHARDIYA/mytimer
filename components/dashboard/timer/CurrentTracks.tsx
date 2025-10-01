@@ -1,11 +1,12 @@
 import React from "react";
-import { useTodayTracks } from "@/hooks/use-api-hooks";
-import { calculateTotalDuration, getTrackDuration } from "@/lib/utils/date";
+
 import { ITimeTrack } from "@/models/time-track";
 import TrackOperations from "../TrackOperations";
+import Skeleton from "@/components/ui/Skeleton";
 import styles from "./CurrentTracks.module.scss";
 import ErrorMessage from "@/components/ui/ErrorMessage";
-import Skeleton from "@/components/ui/Skeleton";
+import { useTodayTracks } from "@/hooks/use-api-hooks";
+import { calculateTotalDuration, getTrackDuration } from "@/lib/utils/date";
 
 const CurrentTracks = () => {
   const { timeTracks, isLoading, error } = useTodayTracks();

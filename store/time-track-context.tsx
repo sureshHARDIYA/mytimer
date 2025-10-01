@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 type ContextType = {
   startTime: Date | null;
@@ -21,10 +21,10 @@ export const TimeTrackProvider = ({
   children: React.ReactNode;
 }) => {
   const [startTime, setStartTime] = useState<Date | null>(null);
-  const [title, setTitle] = useState('');
-  const [tag, setTag] = useState('');
-  const [projectId, setProjectId] = useState('');
-  const [notes, setNotes] = useState('');
+  const [title, setTitle] = useState("");
+  const [tag, setTag] = useState("");
+  const [projectId, setProjectId] = useState("");
+  const [notes, setNotes] = useState("");
 
   return (
     <TimeTrackContext.Provider
