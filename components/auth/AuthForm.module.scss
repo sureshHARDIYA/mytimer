@@ -1,0 +1,49 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.control {
+  margin-bottom: 2.5rem;
+  @include form-label;
+  @include form-input;
+
+  .error {
+    @include form-error;
+    text-align: left;
+  }
+}
+
+.server {
+  font-size: 1.3rem;
+  color: $color-error-light;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 2rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .toggle {
+    margin-top: 2rem;
+    background-color: transparent;
+    color: $color-primary-light-1;
+    border: none;
+    padding: 0.5rem 3rem;
+
+    &:hover {
+      background-color: transparent;
+      color: $color-primary-dark;
+    }
+  }
+}
+
+.disabled {
+  @include btn-disabled;
+}

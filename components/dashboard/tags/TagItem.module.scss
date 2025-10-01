@@ -1,0 +1,35 @@
+@import '@/styles/variables';
+
+// Tag Styles
+.tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.6rem;
+    color: $color-text-primary-dark;
+    font-weight: 600;
+  }
+}
+
+// Skeleton Styles
+.divider {
+  border-radius: 0.6rem;
+  border: 1px solid $color-skeleton;
+  & > * + * {
+    border-top: 1px solid $color-skeleton;
+  }
+}
+
+.container {
+  padding: 1.5rem;
+  height: 6.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.skeleton {
+  height: 2.4rem;
+  width: 90%;
+}

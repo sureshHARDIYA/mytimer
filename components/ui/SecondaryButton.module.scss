@@ -1,0 +1,19 @@
+@import '@/styles/variables';
+
+.secondary {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.4rem;
+  padding: 0.8rem 1.2rem;
+  color: $color-text-primary-light;
+  font-weight: 600;
+  transition: all ease 0.2s;
+
+  &:hover {
+    color: $color-text-primary-dark;
+  }
+}
+
+.active {
+  color: $color-text-primary-dark;
+}

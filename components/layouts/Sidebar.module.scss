@@ -1,0 +1,55 @@
+@import '@/styles/variables';
+
+.sidebar {
+  font-size: $nav-font-size;
+  ul {
+    list-style: none;
+  }
+
+  li {
+    a {
+      display: inline-block;
+      width: 100%;
+      border: 1px solid transparent;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: $color-text-primary-dark;
+      text-align: left;
+
+      &:hover {
+        background-color: $color-primary;
+        color: white;
+      }
+    }
+
+    & .active {
+      background-color: $color-primary;
+      color: white;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1.2rem;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 0.8rem;
+  font-weight: 500;
+
+  svg {
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+}
+
+// $md === 768px
+@media screen and (max-width: $md) {
+  .sidebar {
+    display: none;
+  }
+}

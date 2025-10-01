@@ -1,0 +1,141 @@
+@import '@/styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+  gap: 1rem;
+
+  h2 {
+    font-size: 2rem;
+    color: $color-text-primary-light;
+    text-align: center;
+    font-weight: 400;
+
+    span {
+      color: $color-text-primary-dark;
+      margin-left: 0.5rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.charts {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+}
+
+.bar {
+  padding: 2rem;
+  width: 80%;
+}
+
+.pie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $color-skeleton;
+  border-radius: 6px;
+  padding: 2rem;
+  width: 80%;
+  gap: 10rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+
+  h3 {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}
+
+.message {
+  color: $color-text-primary-dark;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+.info {
+  color: $color-text-primary-light;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+// Skeleton Styles
+.header {
+  width: 28%;
+  height: 3.2rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content {
+  margin-top: 5rem;
+  margin-left: 5rem;
+}
+
+.day {
+  width: 20%;
+  height: 2.8rem;
+  margin-bottom: 2rem;
+}
+
+.divider {
+  border-radius: 0.6rem;
+  border: 1px solid $color-skeleton;
+  & > * + * {
+    border-top: 1px solid $color-skeleton;
+  }
+  margin-bottom: 5rem;
+}
+
+.item {
+  padding: 2rem;
+  height: 7.86rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  height: 3rem;
+  width: 30%;
+}
+
+.right {
+  height: 3rem;
+  width: 16%;
+}
+
+.chart-skeleton {
+  margin-left: 4rem;
+}
+
+.box {
+  height: 35rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rem;
+}
+
+.spinner {
+  height: 8rem !important;
+  width: 8rem !important;
+  color: $color-text-primary-light !important;
+}
+
+// $sm === 640px
+@media screen and (max-width: $sm) {
+  .bar {
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .pie {
+    display: none;
+  }
+}

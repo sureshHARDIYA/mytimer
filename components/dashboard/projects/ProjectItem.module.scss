@@ -1,0 +1,59 @@
+@import '@/styles/variables';
+
+// Tag Styles
+.tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    justify-content: left;
+
+    a {
+      font-size: 1.6rem;
+      color: $color-text-primary-dark;
+      font-weight: 600;
+      text-decoration: none;
+      transition: text-decoration ease;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    p {
+      font-size: 1.4rem;
+      color: $color-text-primary-light;
+    }
+  }
+}
+
+// Skeleton Styles
+.divider {
+  border-radius: 0.6rem;
+  border: 1px solid $color-skeleton;
+  & > * + * {
+    border-top: 1px solid $color-skeleton;
+  }
+}
+
+.container {
+  padding: 1.5rem;
+  height: 8rem;
+}
+
+.skeleton {
+  &__title {
+    height: 2rem;
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+
+  &__date {
+    height: 1.6rem;
+    width: 40%;
+  }
+}

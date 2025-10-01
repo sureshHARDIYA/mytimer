@@ -1,0 +1,35 @@
+@import '@/styles/variables';
+
+.footer {
+  background-color: $color-background;
+  border-top: 1px solid $color-skeleton;
+  text-align: center;
+  padding: 1.6rem 3.2rem;
+  margin-top: auto;
+
+  .content {
+    font-size: 1.4rem;
+    color: $color-text-primary-dark;
+
+    a {
+      color: $color-text-primary-dark;
+      text-underline-offset: 4px;
+      font-weight: 500;
+    }
+  }
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+// $sm === 640px
+@media screen and (max-width: $sm) {
+  .content {
+    font-size: 0.8rem !important;
+
+    a {
+      text-underline-offset: 2px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.content {
+  @include menu-content;
+  padding: 0.4rem;
+}
+
+.item {
+  @include dropdown-menu-item;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+  .item__icon {
+    display: flex;
+    align-items: center;
+    svg {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+}

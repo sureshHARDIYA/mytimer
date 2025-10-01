@@ -1,0 +1,43 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.overlay {
+  @include overlay;
+}
+
+.content {
+  @include dialog-content;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  color: $color-text-primary-light;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.close:hover {
+  color: $color-text-primary-dark;
+}
