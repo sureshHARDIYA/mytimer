@@ -19,7 +19,7 @@ const HeroSection = () => {
             </p>
           </div>
           <div>
-            <PrimaryButton href="/sign-up" className={styles.btn}>
+            <PrimaryButton href="/login" className={styles.btn}>
               Start Tracking Now
             </PrimaryButton>
           </div>

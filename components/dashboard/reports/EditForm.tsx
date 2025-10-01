@@ -1,16 +1,19 @@
-import React from "react";
+import { toast } from "sonner";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import PrimaryButton from "@/components/ui/PrimaryButton";
-import { editTimeTrack } from "@/lib/utils/services";
-import { toast } from "sonner";
-import { useTimeTracks } from "@/hooks/use-api-hooks";
-import { ITimeTrack } from "@/models/time-track";
-import styles from "../SharedStyles.module.scss";
+import SelectField from "@/components/ui/SelectField";
+
 import {
   timeTrackUpdateSchema,
   TimeTrackUpdateType,
 } from "@/lib/validations/time-track";
+import { IProject } from "@/models/project";
+import styles from "../SharedStyles.module.scss";
+import { editTimeTrack } from "@/lib/utils/services";
+import { ITimeTrack } from "@/models/time-track";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import { useProjects, useTags } from "@/hooks/use-api-hooks";
 
 interface EditFormProps {
   afterSave: () => void;
@@ -18,6 +21,27 @@ interface EditFormProps {
 }
 
 const EditForm = ({ afterSave, initialTrack }: EditFormProps) => {
+  const [selectedProject, setSelectedProject] = useState<{
+    value: string;
+    label: string;
+  } | null>(
+    initialTrack.projectId
+      ? { value: initialTrack.projectId.toString(), label: "Loading..." }
+      : null
+  );
+
+  const [selectedTag, setSelectedTag] = useState<{
+    value: string;
+    label: string;
+  } | null>(
+    initialTrack.tag
+      ? { value: initialTrack.tag, label: initialTrack.tag }
+      : null
+  );
+
+  const { projects } = useProjects();
+  const { tags } = useTags();
+
   const {
     register,
     handleSubmit,
@@ -26,18 +50,67 @@ const EditForm = ({ afterSave, initialTrack }: EditFormProps) => {
   } = useForm<TimeTrackUpdateType>({
     resolver: zodResolver(timeTrackUpdateSchema),
     mode: "all",
-    defaultValues: { newTitle: initialTrack.title },
+    defaultValues: {
+      newTitle: initialTrack.title,
+      projectId: initialTrack.projectId?.toString(),
+    },
   });
+
+  // Update selected project when projects are loaded
+  useEffect(() => {
+    if (projects && initialTrack.projectId) {
+      const project = projects.find(
+        (p: IProject) =>
+          p._id?.toString() === initialTrack.projectId?.toString()
+      );
+      if (project) {
+        setSelectedProject({
+          value: project._id!.toString(),
+          label: project.projectTitle,
+        });
+      }
+    }
+  }, [projects, initialTrack.projectId]);
+
+  const projectOptions = [
+    { value: "", label: "No Project" },
+    ...(projects?.map((project: IProject) => ({
+      value: project._id!.toString(),
+      label: project.projectTitle,
+    })) || []),
+  ];
+
+  const tagOptions = [
+    { value: "", label: "No Tag" },
+    ...(tags?.map((tag: string) => ({
+      value: tag,
+      label: tag,
+    })) || []),
+  ];
 
   async function onSubmit(enteredData: TimeTrackUpdateType) {
     const { newTitle } = enteredData;
-    if (newTitle === initialTrack.title) {
+    const projectId = selectedProject?.value || undefined;
+    const tag = selectedTag?.value || undefined;
+
+    const hasChanges =
+      newTitle !== initialTrack.title ||
+      projectId !== (initialTrack.projectId?.toString() || "") ||
+      tag !== (initialTrack.tag || "");
+
+    if (!hasChanges) {
       afterSave();
       return;
     }
+
     try {
-      await editTimeTrack(initialTrack._id.toString(), newTitle);
-      toast.success("Title updated successfully");
+      await editTimeTrack(
+        initialTrack._id.toString(),
+        newTitle,
+        projectId,
+        tag
+      );
+      toast.success("Time track updated successfully");
       reset();
     } catch (error) {
       toast.error("An error occurred. Please try again");
@@ -53,6 +126,29 @@ const EditForm = ({ afterSave, initialTrack }: EditFormProps) => {
       {errors.newTitle && (
         <p className={styles.error}>{`${errors.newTitle.message}`}</p>
       )}
+
+      <div className={styles.control}>
+        <SelectField
+          label="Project"
+          value={selectedProject}
+          onChange={(option) => setSelectedProject(option)}
+          options={projectOptions}
+          placeholder="Select a project..."
+          isClearable
+        />
+      </div>
+
+      <div className={styles.control}>
+        <SelectField
+          label="Tag"
+          value={selectedTag}
+          onChange={(option) => setSelectedTag(option)}
+          options={tagOptions}
+          placeholder="Select a tag..."
+          isClearable
+        />
+      </div>
+
       <div className={styles.action}>
         <PrimaryButton
           type="submit"

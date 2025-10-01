@@ -1,8 +1,8 @@
-import { getTodayStartEndISO } from '@/lib/utils/date';
-import useSWR from 'swr';
+import useSWR from "swr";
+import { getTodayStartEndISO } from "@/lib/utils/date";
 
 export function useTags() {
-  const { data, error, isLoading, mutate } = useSWR('/api/user/tags');
+  const { data, error, isLoading, mutate } = useSWR("/api/user/tags");
 
   return {
     tags: data,
@@ -12,7 +12,7 @@ export function useTags() {
   };
 }
 
-const timeTracksApi = '/api/user/time-tracks';
+const timeTracksApi = "/api/user/time-tracks";
 
 export function useTimeTracks() {
   const { data, error, isLoading, mutate } = useSWR(timeTracksApi);
@@ -49,7 +49,7 @@ export function useTodayTracks() {
 }
 
 export function useProjects() {
-  const { data, error, isLoading, mutate } = useSWR('/api/user/projects');
+  const { data, error, isLoading, mutate } = useSWR("/api/user/projects");
 
   return {
     projects: data,

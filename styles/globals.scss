@@ -1,5 +1,70 @@
 @import 'variables';
 
+// React-select styles for consistent font sizing
+.select-field__control {
+  border: 1.5px solid $color-primary !important;
+  border-radius: 8px !important;
+  min-height: 48px !important;
+  box-shadow: none !important;
+  font-size: 1.4rem !important;
+}
+
+.select-field__control:hover {
+  border-color: $color-primary-light-1 !important;
+}
+
+.select-field__control:focus-within {
+  border-color: $color-primary-light-1 !important;
+  box-shadow: 0 0 0 3px rgba(120, 35, 185, 0.1) !important;
+}
+
+.select-field__value-container {
+  padding: 0 12px !important;
+  font-size: 1.4rem !important;
+}
+
+.select-field__input-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1.4rem !important;
+}
+
+.select-field__placeholder {
+  color: $color-text-primary-light !important;
+  font-size: 1.4rem !important;
+}
+
+.select-field__single-value {
+  color: $color-text-primary-dark !important;
+  font-size: 1.4rem !important;
+}
+
+.select-field__menu {
+  border: 1px solid $color-skeleton !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1000 !important;
+}
+
+.select-field__option {
+  padding: 12px !important;
+  color: $color-text-primary-dark !important;
+  font-size: 1.4rem !important;
+}
+
+.select-field__option:hover {
+  background-color: $color-skeleton !important;
+}
+
+.select-field__option--is-selected {
+  background-color: $color-primary !important;
+  color: white !important;
+}
+
+.select-field__option--is-focused {
+  background-color: $color-skeleton !important;
+}
+
 * {
   padding: 0;
   margin: 0;

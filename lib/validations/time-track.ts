@@ -11,6 +11,8 @@ export const timeTrackSchema = z.object({
 
 export const timeTrackUpdateSchema = z.object({
   newTitle: z.string().trim().min(1, "Title is required").max(128),
+  projectId: objectIdValidation.optional(),
+  tag: z.string().optional(),
 });
 
 export type TimeTrackSchemaType = z.infer<typeof timeTrackSchema>;

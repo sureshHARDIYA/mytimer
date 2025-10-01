@@ -1,5 +1,5 @@
-import { IProject } from "@/models/project";
 import axios from "axios";
+import { IProject } from "@/models/project";
 import { timeTrackSchema } from "../validations/time-track";
 
 const tagsApiUrl = "/api/user/tags/";
@@ -71,10 +71,20 @@ export async function sendTimeTrack(timeTrackData: TimeTrackRecording) {
   return response.data;
 }
 
-export async function editTimeTrack(trackId: string, newTitle: string) {
+export async function editTimeTrack(
+  trackId: string,
+  newTitle: string,
+  projectId?: string,
+  tag?: string
+) {
   const response = await axios.patch(timeTracksApiUrl + trackId, {
     newTitle,
+    projectId,
+    tag,
   });
+
+  console.log(response.data);
+
   return response.data;
 }
 

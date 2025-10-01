@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu';
+import React, { useState } from "react";
+import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 
-import styles from './Dropdown.module.scss';
+import styles from "./Dropdown.module.scss";
 
 const Dropdown = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);

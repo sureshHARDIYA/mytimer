@@ -1,0 +1,11 @@
+@import '@/styles/variables';
+
+.selectField {
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: $color-text-primary-dark;
+    font-size: 1.4rem;
+  }
+}

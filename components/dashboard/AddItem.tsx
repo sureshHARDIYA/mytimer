@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import Modal from '@/components/ui/Modal';
-import TagForm from './tags/TagForm';
-import ProjectForm from './projects/ProjectForm';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import { PlusIcon } from 'lucide-react';
-import styles from './SharedStyles.module.scss';
+import React, { useState } from "react";
+import { PlusIcon } from "lucide-react";
+
+import TagForm from "./tags/TagForm";
+import Modal from "@/components/ui/Modal";
+import ProjectForm from "./projects/ProjectForm";
+import styles from "./SharedStyles.module.scss";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 const AddItem = ({
   itemType,
   btnText,
 }: {
-  itemType: 'tag' | 'project';
+  itemType: "tag" | "project";
   btnText?: string;
 }) => {
   const [open, setOpen] = useState(false);
@@ -19,7 +20,7 @@ const AddItem = ({
   const defaultButtonText = (
     <>
       <PlusIcon />
-      {itemType === 'tag' ? 'New tag' : 'New project'}
+      {itemType === "tag" ? "New tag" : "New project"}
     </>
   );
   const buttonText = btnText || defaultButtonText;
@@ -33,7 +34,7 @@ const AddItem = ({
           </PrimaryButton>
         </Modal.Button>
         <Modal.Content title={title} className={styles.modal}>
-          {itemType === 'tag' ? (
+          {itemType === "tag" ? (
             <TagForm operationType="create" afterSave={closeModal} />
           ) : (
             <ProjectForm operationType="create" afterSave={closeModal} />

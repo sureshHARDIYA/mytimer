@@ -1,9 +1,10 @@
-import React from 'react';
-import TagItem from './TagItem';
-import { useTags } from '@/hooks/use-api-hooks';
-import ErrorMessage from '@/components/ui/ErrorMessage';
-import styles from '../SharedStyles.module.scss';
-import EmptyPlaceholder from '../EmptyPlaceholder';
+import React from "react";
+
+import TagItem from "./TagItem";
+import { useTags } from "@/hooks/use-api-hooks";
+import styles from "../SharedStyles.module.scss";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import EmptyPlaceholder from "../EmptyPlaceholder";
 
 const TagList = () => {
   const { tags, isLoading, error } = useTags();
