@@ -1,23 +1,24 @@
-import { NextAuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { loginSchema } from '@/lib/validations/auth';
-import { connectToDB } from '@/lib/utils/db';
-import { verifyPassword } from '@/lib/utils/hash';
-import User from '@/models/user';
+import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+
+import User from "@/models/user";
+import { connectToDB } from "@/lib/utils/db";
+import { verifyPassword } from "@/lib/utils/hash";
+import { loginSchema } from "@/lib/validations/auth";
 
 export const authOptions: NextAuthOptions = {
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   providers: [
     CredentialsProvider({
-      type: 'credentials',
+      type: "credentials",
       credentials: {},
       async authorize(credentials) {
         try {
           const validatedData = loginSchema.safeParse(credentials);
           if (!validatedData.success) {
-            throw new Error('Invalid input: ' + validatedData.error.message);
+            throw new Error("Invalid input: " + validatedData.error.message);
           }
 
           const { email, password } = validatedData.data;
@@ -26,13 +27,13 @@ export const authOptions: NextAuthOptions = {
           const user = await User.findOne({ email });
 
           if (!user) {
-            throw new Error('User not found');
+            throw new Error("User not found");
           }
 
           const isPasswordValid = await verifyPassword(password, user.password);
 
           if (!isPasswordValid) {
-            throw new Error('Invalid password');
+            throw new Error("Invalid password");
           }
           return {
             id: user._id.toString(),
@@ -50,7 +51,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
 
   callbacks: {

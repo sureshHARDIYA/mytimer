@@ -8,6 +8,7 @@ export const timeTrackSchema = z.object({
   end: z.coerce.date(),
   projectId: objectIdValidation.optional(),
   tag: z.string().optional(),
+  notes: z.string().max(1000).optional(),
 });
 
 export const timeTrackUpdateSchema = z.object({
@@ -19,6 +20,7 @@ export const timeTrackUpdateSchema = z.object({
       message: "Invalid MongoDB ObjectId",
     }),
   tag: z.string().optional(),
+  notes: z.string().max(1000).optional(),
 });
 
 export type TimeTrackSchemaType = z.infer<typeof timeTrackSchema>;

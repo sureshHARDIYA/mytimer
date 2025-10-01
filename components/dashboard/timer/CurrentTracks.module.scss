@@ -30,12 +30,17 @@
 
     .content {
       display: flex;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      gap: 0.5rem;
 
-      span {
-        font-weight: 500;
+      .mainInfo {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        span {
+          font-weight: 500;
+        }
       }
     }
 
@@ -56,6 +61,13 @@
       color: #fff;
       border-radius: 100px;
       font-weight: 500;
+    }
+    .notes {
+      color: $color-text-primary-light;
+      font-size: 1.2rem;
+      max-width: 100%;
+      word-wrap: break-word;
+      line-height: 1.4;
     }
     .tag {
       color: $color-text-primary-dark;

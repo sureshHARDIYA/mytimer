@@ -6,6 +6,7 @@ export interface ITimeTrack {
   projectId?: mongoose.Schema.Types.ObjectId;
   tag?: string;
   title: string;
+  notes?: string;
   start: Date;
   end: Date;
   addProject: (projectId: string) => Promise<void>;
@@ -22,6 +23,7 @@ const timeTrackSchema = new mongoose.Schema<ITimeTrack>({
   },
   tag: { type: String },
   title: { type: String, required: true },
+  notes: { type: String },
   start: { type: Date, required: true },
   end: { type: Date, required: true },
 });

@@ -53,6 +53,7 @@ const EditForm = ({ afterSave, initialTrack }: EditFormProps) => {
     defaultValues: {
       newTitle: initialTrack.title,
       projectId: initialTrack.projectId?.toString(),
+      notes: initialTrack.notes || "",
     },
   });
 
@@ -89,14 +90,15 @@ const EditForm = ({ afterSave, initialTrack }: EditFormProps) => {
   ];
 
   async function onSubmit(enteredData: TimeTrackUpdateType) {
-    const { newTitle } = enteredData;
+    const { newTitle, notes } = enteredData;
     const projectId = selectedProject?.value || undefined;
     const tag = selectedTag?.value || undefined;
 
     const hasChanges =
       newTitle !== initialTrack.title ||
       projectId !== (initialTrack.projectId?.toString() || "") ||
-      tag !== (initialTrack.tag || "");
+      tag !== (initialTrack.tag || "") ||
+      notes !== (initialTrack.notes || "");
 
     if (!hasChanges) {
       afterSave();
@@ -108,7 +110,8 @@ const EditForm = ({ afterSave, initialTrack }: EditFormProps) => {
         initialTrack._id.toString(),
         newTitle,
         projectId,
-        tag
+        tag,
+        notes
       );
       toast.success("Time track updated successfully");
       reset();
@@ -147,6 +150,17 @@ const EditForm = ({ afterSave, initialTrack }: EditFormProps) => {
           placeholder="Select a tag..."
           isClearable
         />
+      </div>
+
+      <div className={styles.control}>
+        <label className={styles.label}>Notes</label>
+        <textarea
+          {...register("notes")}
+          placeholder="Add notes (optional)"
+          rows={3}
+          className={styles.textarea}
+        />
+        {errors.notes && <p className={styles.error}>{errors.notes.message}</p>}
       </div>
 
       <div className={styles.action}>

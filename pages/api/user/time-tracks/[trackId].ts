@@ -35,11 +35,11 @@ export default async function handler(
         res.status(422).json({ message: "Validation error" });
         return;
       }
-      const { newTitle, projectId, tag } = validatedTag.data;
+      const { newTitle, projectId, tag, notes } = validatedTag.data;
       await user.updateTimeTrack(trackId, newTitle);
 
-      // Update project and tag separately if provided
-      if (projectId !== undefined || tag !== undefined) {
+      // Update project, tag and notes separately if provided
+      if (projectId !== undefined || tag !== undefined || notes !== undefined) {
         const timeTrack = await TimeTrack.findOne({
           _id: trackId,
           userId: user._id,
@@ -51,13 +51,17 @@ export default async function handler(
               projectId !== "" &&
               mongoose.Types.ObjectId.isValid(projectId)
             ) {
-              timeTrack.projectId = new mongoose.Types.ObjectId(projectId);
+              timeTrack.projectId =
+                new mongoose.Types.ObjectId(projectId) as any;
             } else {
               timeTrack.projectId = undefined;
             }
           }
           if (tag !== undefined) {
             timeTrack.tag = tag || undefined;
+          }
+          if (notes !== undefined) {
+            timeTrack.notes = notes || undefined;
           }
           await timeTrack.save();
         }

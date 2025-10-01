@@ -1,16 +1,16 @@
-import React, { FormEvent } from 'react';
-import Stopwatch from './Stopwatch';
-import { toast } from 'sonner';
-import TagSelect from './TagSelect';
-import { sendTimeTrack, TimeTrackRecording } from '@/lib/utils/services';
-import { PlayIcon, PauseIcon } from 'lucide-react';
-import { endOfDay, startOfDay, differenceInHours, isSameDay } from 'date-fns';
-import ProjectSelect from './ProjectSelect';
-import CurrentTracks from './CurrentTracks';
-import { useTodayTracks } from '@/hooks/use-api-hooks';
-import { useTimerContext, useTimeTrackContext } from '@/hooks/use-store-hooks';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import styles from './AddTimeTrack.module.scss';
+import React, { FormEvent } from "react";
+import Stopwatch from "./Stopwatch";
+import { toast } from "sonner";
+import TagSelect from "./TagSelect";
+import { sendTimeTrack, TimeTrackRecording } from "@/lib/utils/services";
+import { PlayIcon, PauseIcon } from "lucide-react";
+import { endOfDay, startOfDay, differenceInHours, isSameDay } from "date-fns";
+import ProjectSelect from "./ProjectSelect";
+import CurrentTracks from "./CurrentTracks";
+import { useTodayTracks } from "@/hooks/use-api-hooks";
+import { useTimerContext, useTimeTrackContext } from "@/hooks/use-store-hooks";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import styles from "./AddTimeTrack.module.scss";
 
 const AddTimeTrack = () => {
   const { mutate } = useTodayTracks();
@@ -20,7 +20,7 @@ const AddTimeTrack = () => {
 
   const createTimeTrack = (startDate: Date, endDate: Date) => {
     let requestData: TimeTrackRecording = {
-      title: currentTrack.title.trim() || '(no description)',
+      title: currentTrack.title.trim() || "(no description)",
       start: startDate.toISOString(),
       end: endDate.toISOString(),
     };
@@ -67,19 +67,20 @@ const AddTimeTrack = () => {
         await sendTimeTrack(track);
       }
       mutate();
-      toast.success('Time track recorded successfully!');
+      toast.success("Time track recorded successfully!");
     } catch (error) {
       toast.error(
-        'Oops! There was a problem recording the time track. Please try again.'
+        "Oops! There was a problem recording the time track. Please try again."
       );
     }
     resetForm();
   };
 
   const resetForm = () => {
-    currentTrack.setTitle('');
-    currentTrack.setTag('');
-    currentTrack.setProjectId('');
+    currentTrack.setTitle("");
+    currentTrack.setTag("");
+    currentTrack.setProjectId("");
+    currentTrack.setNotes("");
     currentTrack.setStartTime(null);
   };
 
@@ -92,7 +93,7 @@ const AddTimeTrack = () => {
           placeholder="What are you working on?"
           value={currentTrack.title}
           onChange={(event) => currentTrack.setTitle(event.target.value)}
-          className={styles['form-input']}
+          className={styles["form-input"]}
         />
         <div className={styles.settings}>
           <ProjectSelect

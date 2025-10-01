@@ -1,4 +1,4 @@
-import { WeeklyDataType } from './date';
+import { WeeklyDataType } from "./date";
 
 export const calculateScale = (weekly: WeeklyDataType[]): number[] => {
   const maxDurationSec = Math.max(...weekly.map((data) => data.duration));

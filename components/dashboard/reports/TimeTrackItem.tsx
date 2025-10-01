@@ -1,8 +1,8 @@
-import React from 'react';
-import { ITimeTrack } from '@/models/time-track';
-import styles from './TimeTrackItem.module.scss';
-import { getTrackDuration } from '@/lib/utils/date';
-import TrackOperations from '../TrackOperations';
+import React from "react";
+import { ITimeTrack } from "@/models/time-track";
+import styles from "./TimeTrackItem.module.scss";
+import { getTrackDuration } from "@/lib/utils/date";
+import TrackOperations from "../TrackOperations";
 
 interface Props {
   timeTrack: ITimeTrack;
@@ -12,8 +12,17 @@ const TimeTrackItem = ({ timeTrack }: Props) => {
   return (
     <div className={styles.item}>
       <div className={styles.content}>
-        <span>{timeTrack.title}</span>
-        <span className={styles.tag}>{timeTrack.tag || 'No tag'}</span>
+        <div className={styles.mainInfo}>
+          <span>{timeTrack.title}</span>
+          <span className={styles.tag}>{timeTrack.tag || "No tag"}</span>
+        </div>
+        {timeTrack.notes && (
+          <div className={styles.notes}>
+            {timeTrack.notes.length > 300
+              ? timeTrack.notes.slice(0, 297) + "..."
+              : timeTrack.notes}
+          </div>
+        )}
       </div>
       <div className={styles.control}>
         <span className={styles.duration}>

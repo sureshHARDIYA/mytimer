@@ -62,6 +62,7 @@ export type TimeTrackRecording = {
   end: string;
   tag?: string;
   projectId?: string;
+  notes?: string;
 };
 
 export async function sendTimeTrack(timeTrackData: TimeTrackRecording) {
@@ -75,12 +76,14 @@ export async function editTimeTrack(
   trackId: string,
   newTitle: string,
   projectId?: string,
-  tag?: string
+  tag?: string,
+  notes?: string
 ) {
   const response = await axios.patch(timeTracksApiUrl + trackId, {
     newTitle,
     projectId,
     tag,
+    notes,
   });
 
   console.log(response.data);

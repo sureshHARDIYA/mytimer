@@ -1,14 +1,15 @@
-import '@/styles/globals.scss';
-import type { AppProps } from 'next/app';
-import { SessionProvider } from 'next-auth/react';
-import Layout from '@/components/layouts/Layout';
-import { NextPage } from 'next';
-import { ReactElement, ReactNode } from 'react';
-import { TimerProvider } from '@/store/timer-context';
-import { TimeTrackProvider } from '@/store/time-track-context';
-import { Inter } from 'next/font/google';
+import "@/styles/globals.scss";
+import { NextPage } from "next";
+import { Inter } from "next/font/google";
+import type { AppProps } from "next/app";
+import { ReactElement, ReactNode } from "react";
+import { SessionProvider } from "next-auth/react";
 
-export const inter = Inter({ subsets: ['latin'] });
+import Layout from "@/components/layouts/Layout";
+import { TimerProvider } from "@/store/timer-context";
+import { TimeTrackProvider } from "@/store/time-track-context";
+
+export const inter = Inter({ subsets: ["latin"] });
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

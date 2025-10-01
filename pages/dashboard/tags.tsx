@@ -1,8 +1,9 @@
-import React from 'react';
-import type { NextPageWithLayout } from '../_app';
-import type { ReactElement } from 'react';
-import DashboardLayout from '@/components/layouts/DashboardLayout';
-import TagBoard from '@/components/dashboard/tags/TagBoard';
+import React from "react";
+import type { ReactElement } from "react";
+
+import type { NextPageWithLayout } from "../_app";
+import TagBoard from "@/components/dashboard/tags/TagBoard";
+import DashboardLayout from "@/components/layouts/DashboardLayout";
 
 const TagsPage: NextPageWithLayout = () => {
   return <TagBoard />;

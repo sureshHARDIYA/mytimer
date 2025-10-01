@@ -1,11 +1,11 @@
-import React from 'react';
-import { useTodayTracks } from '@/hooks/use-api-hooks';
-import { calculateTotalDuration, getTrackDuration } from '@/lib/utils/date';
-import { ITimeTrack } from '@/models/time-track';
-import TrackOperations from '../TrackOperations';
-import styles from './CurrentTracks.module.scss';
-import ErrorMessage from '@/components/ui/ErrorMessage';
-import Skeleton from '@/components/ui/Skeleton';
+import React from "react";
+import { useTodayTracks } from "@/hooks/use-api-hooks";
+import { calculateTotalDuration, getTrackDuration } from "@/lib/utils/date";
+import { ITimeTrack } from "@/models/time-track";
+import TrackOperations from "../TrackOperations";
+import styles from "./CurrentTracks.module.scss";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import Skeleton from "@/components/ui/Skeleton";
 
 const CurrentTracks = () => {
   const { timeTracks, isLoading, error } = useTodayTracks();
@@ -40,8 +40,17 @@ const CurrentTracks = () => {
         {timeTracks.map((track: ITimeTrack) => (
           <li key={track._id.toString()}>
             <div className={styles.content}>
-              <span>{track.title}</span>
-              <span className={styles.tag}>{track.tag || 'No tag'}</span>
+              <div className={styles.mainInfo}>
+                <span>{track.title}</span>
+                <span className={styles.tag}>{track.tag || "No tag"}</span>
+              </div>
+              {track.notes && (
+                <div className={styles.notes}>
+                  {track.notes.length > 300
+                    ? track.notes.slice(0, 297) + "..."
+                    : track.notes}
+                </div>
+              )}
             </div>
             <div className={styles.control}>
               <span className={styles.duration}>

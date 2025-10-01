@@ -1,7 +1,8 @@
-import type { NextPageWithLayout } from '../_app';
-import type { ReactElement } from 'react';
-import DashboardLayout from '@/components/layouts/DashboardLayout';
-import AddTimeTrack from '@/components/dashboard/timer/AddTimeTrack';
+import type { ReactElement } from "react";
+
+import type { NextPageWithLayout } from "../_app";
+import DashboardLayout from "@/components/layouts/DashboardLayout";
+import AddTimeTrack from "@/components/dashboard/timer/AddTimeTrack";
 
 const DashboardPage: NextPageWithLayout = () => {
   return (

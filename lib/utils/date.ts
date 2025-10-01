@@ -1,4 +1,3 @@
-import { ITimeTrack } from '@/models/time-track';
 import {
   startOfWeek,
   endOfWeek,
@@ -11,7 +10,9 @@ import {
   getDay,
   parseISO,
   differenceInWeeks,
-} from 'date-fns';
+} from "date-fns";
+
+import { ITimeTrack } from "@/models/time-track";
 
 export const getISOWeekDateRange = (weekOffset = 0) => {
   let date = new Date();
@@ -33,26 +34,26 @@ export const aggregateWeeklyTimeTracks = (
 ) => {
   const weekStart = new Date(start);
   const daysOfWeek = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ];
   const initialData: Record<string, { duration: number; date: string }> = {};
   daysOfWeek.forEach((day, index) => {
     initialData[day] = {
       duration: 0,
-      date: format(addDays(weekStart, index), 'MMMM d, yyyy'),
+      date: format(addDays(weekStart, index), "MMMM d, yyyy"),
     };
   });
 
   timeTracks.forEach((track) => {
     const start = new Date(track.start);
     const end = new Date(track.end);
-    const dayOfWeek = format(start, 'EEEE');
+    const dayOfWeek = format(start, "EEEE");
     const durationInSeconds = differenceInSeconds(end, start);
 
     if (dayOfWeek in initialData) {
@@ -77,7 +78,7 @@ export const aggregateTagTimeUsage = (timeTracks: ITimeTrack[]) => {
   let tagTime: TagTimeType = {};
 
   timeTracks.forEach((track) => {
-    const tag = track.tag || 'No Tag';
+    const tag = track.tag || "No Tag";
     if (!tagTime[tag]) {
       tagTime[tag] = { name: tag, total: 0 };
     }
@@ -126,9 +127,9 @@ export const secondsToHMS = (timeInSeconds: number) => {
 export const formatDuration = (timeInSeconds: number) => {
   const { hours, minutes, seconds } = secondsToHMS(timeInSeconds);
   const formattedHours =
-    hours >= 100 ? hours.toString() : hours.toString().padStart(2, '0');
-  const formattedMinutes = minutes.toString().padStart(2, '0');
-  const formattedSeconds = seconds.toString().padStart(2, '0');
+    hours >= 100 ? hours.toString() : hours.toString().padStart(2, "0");
+  const formattedMinutes = minutes.toString().padStart(2, "0");
+  const formattedSeconds = seconds.toString().padStart(2, "0");
 
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 };
@@ -138,14 +139,14 @@ export const formatDurationWithUnits = (timeInSeconds: number) => {
 
   if (hours > 0) {
     const formattedHours =
-      hours >= 100 ? hours.toString() : hours.toString().padStart(2, '0');
-    return `${formattedHours}:${minutes.toString().padStart(2, '0')}:${seconds
+      hours >= 100 ? hours.toString() : hours.toString().padStart(2, "0");
+    return `${formattedHours}:${minutes.toString().padStart(2, "0")}:${seconds
       .toString()
-      .padStart(2, '0')} hours`;
+      .padStart(2, "0")} hours`;
   } else if (minutes > 0) {
-    return `${minutes.toString().padStart(2, '0')}:${seconds
+    return `${minutes.toString().padStart(2, "0")}:${seconds
       .toString()
-      .padStart(2, '0')} min`;
+      .padStart(2, "0")} min`;
   } else {
     return `${seconds} sec`;
   }
@@ -153,11 +154,11 @@ export const formatDurationWithUnits = (timeInSeconds: number) => {
 
 export const formatDate = (input: string | number): string => {
   const date = new Date(input);
-  return format(date, 'MMMM d, yyyy');
+  return format(date, "MMMM d, yyyy");
 };
 
 export const formatDateToDayMonth = (isoString: string) =>
-  format(parseISO(isoString), 'dd MMM');
+  format(parseISO(isoString), "dd MMM");
 
 export type DailyTracksType = {
   day: string;
@@ -170,7 +171,7 @@ export const groupTracksByDayOfWeek = (
   const dayMap: Record<string, ITimeTrack[]> = {};
 
   timeTracks.forEach((track) => {
-    const dayOfWeek = format(new Date(track.start), 'EEEE');
+    const dayOfWeek = format(new Date(track.start), "EEEE");
     if (!dayMap[dayOfWeek]) {
       dayMap[dayOfWeek] = [];
     }

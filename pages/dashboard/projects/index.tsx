@@ -1,8 +1,9 @@
-import React from 'react';
-import ProjectBoard from '@/components/dashboard/projects/ProjectBoard';
-import DashboardLayout from '@/components/layouts/DashboardLayout';
-import type { NextPageWithLayout } from '../../_app';
-import type { ReactElement } from 'react';
+import React from "react";
+import type { ReactElement } from "react";
+
+import type { NextPageWithLayout } from "../../_app";
+import DashboardLayout from "@/components/layouts/DashboardLayout";
+import ProjectBoard from "@/components/dashboard/projects/ProjectBoard";
 
 const ProjectsPage: NextPageWithLayout = () => {
   return (

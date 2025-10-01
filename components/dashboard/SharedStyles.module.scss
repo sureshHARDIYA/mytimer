@@ -45,6 +45,37 @@
   margin-top: 1rem;
 }
 
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: $color-text-primary-dark;
+  font-size: 1.4rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.4rem;
+  border: 1.5px solid $color-primary;
+  border-radius: 8px;
+  color: $color-text-primary-dark;
+  background-color: $color-background;
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+
+  &::placeholder {
+    color: $color-text-primary-light;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-light-1;
+    box-shadow: 0 0 0 3px rgba(120, 35, 185, 0.1);
+  }
+}
+
 
 
 .action {

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export async function connectToDB() {
   const MONGODB_URI = `${process.env.DB_URL}?retryWrites=true&w=majority`;
@@ -6,7 +6,7 @@ export async function connectToDB() {
   try {
     client = await mongoose.connect(MONGODB_URI);
   } catch (error) {
-    console.log(error + ' Db connection failed!');
+    console.log(error + " Db connection failed!");
     throw error;
   }
   return client;

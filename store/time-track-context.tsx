@@ -9,6 +9,8 @@ type ContextType = {
   setTag: React.Dispatch<React.SetStateAction<string>>;
   projectId: string;
   setProjectId: React.Dispatch<React.SetStateAction<string>>;
+  notes: string;
+  setNotes: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const TimeTrackContext = createContext<ContextType | null>(null);
@@ -22,6 +24,7 @@ export const TimeTrackProvider = ({
   const [title, setTitle] = useState('');
   const [tag, setTag] = useState('');
   const [projectId, setProjectId] = useState('');
+  const [notes, setNotes] = useState('');
 
   return (
     <TimeTrackContext.Provider
@@ -34,6 +37,8 @@ export const TimeTrackProvider = ({
         setTag,
         projectId,
         setProjectId,
+        notes,
+        setNotes,
       }}
     >
       {children}

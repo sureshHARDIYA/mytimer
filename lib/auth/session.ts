@@ -1,6 +1,7 @@
-import { authOptions } from './auth-options';
-import { getServerSession } from 'next-auth';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession } from "next-auth";
+import type { NextApiRequest, NextApiResponse } from "next";
+
+import { authOptions } from "./auth-options";
 
 export async function getCurrentUser(
   req: NextApiRequest,
