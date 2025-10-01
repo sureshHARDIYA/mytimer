@@ -60,7 +60,8 @@ export function useProjects() {
 }
 
 export function useProject(projectId: string) {
-  const { data, error, isLoading } = useSWR(`/api/user/projects/${projectId}`);
+  const key = projectId ? `/api/user/projects/${projectId}` : null;
+  const { data, error, isLoading } = useSWR(key);
 
   return {
     project: data,

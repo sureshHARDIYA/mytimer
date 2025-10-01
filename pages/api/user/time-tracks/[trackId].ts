@@ -1,10 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
-import { getCurrentUser } from "@/lib/auth/session";
-import { connectToDB } from "@/lib/utils/db";
-import { timeTrackUpdateSchema } from "@/lib/validations/time-track";
+import type { NextApiRequest, NextApiResponse } from "next";
+
 import User from "@/models/user";
 import TimeTrack from "@/models/time-track";
+import { connectToDB } from "@/lib/utils/db";
+import { getCurrentUser } from "@/lib/auth/session";
+import { timeTrackUpdateSchema } from "@/lib/validations/time-track";
 
 export default async function handler(
   req: NextApiRequest,
@@ -45,7 +46,15 @@ export default async function handler(
         });
         if (timeTrack) {
           if (projectId !== undefined) {
-            timeTrack.projectId = projectId ? new mongoose.Schema.Types.ObjectId(projectId) : undefined;
+            if (
+              projectId &&
+              projectId !== "" &&
+              mongoose.Types.ObjectId.isValid(projectId)
+            ) {
+              timeTrack.projectId = new mongoose.Types.ObjectId(projectId);
+            } else {
+              timeTrack.projectId = undefined;
+            }
           }
           if (tag !== undefined) {
             timeTrack.tag = tag || undefined;

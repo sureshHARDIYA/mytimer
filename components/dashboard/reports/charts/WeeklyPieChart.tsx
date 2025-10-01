@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   PieChart,
   Pie,
@@ -6,8 +6,8 @@ import {
   Legend,
   Tooltip,
   ResponsiveContainer,
-} from 'recharts';
-import CustomTooltip from './CustomTooltip';
+} from "recharts";
+import CustomTooltip from "./CustomTooltip";
 
 interface TagUsageItem {
   name: string;
@@ -18,7 +18,7 @@ interface WeeklyPieChartProps {
   tagUsage: TagUsageItem[];
 }
 
-const BASE_COLORS = ['#7823b9', '#db2777', '#2563eb', '#059669', '#eab308'];
+const BASE_COLORS = ["#7823b9", "#db2777", "#2563eb", "#059669", "#eab308"];
 
 const generateColorPalette = (length: number) => {
   const colors = [...BASE_COLORS];
@@ -62,7 +62,7 @@ const WeeklyPieChart = ({ tagUsage }: WeeklyPieChartProps) => {
         <Legend formatter={renderColorfulLegendText} align="center" />
         <Tooltip
           content={<CustomTooltip chartType="pie" />}
-          cursor={{ fill: '#e2e8f0' }}
+          cursor={{ fill: "#e2e8f0" }}
         />
       </PieChart>
     </ResponsiveContainer>

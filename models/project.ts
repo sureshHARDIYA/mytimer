@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export interface IProject {
   _id?: mongoose.Schema.Types.ObjectId;
@@ -19,6 +19,6 @@ const projectSchema = new mongoose.Schema<IProject>(
 );
 
 const Project: mongoose.Model<IProject> =
-  mongoose.models.Project || mongoose.model<IProject>('Project', projectSchema);
+  mongoose.models.Project || mongoose.model<IProject>("Project", projectSchema);
 
 export default Project;

@@ -1,9 +1,51 @@
 @import '@/styles/variables';
 
+.container {
+  width: 100%;
+}
+
 .title {
   color: $color-text-primary-dark;
   font-size: 3.5rem;
+  margin-bottom: 2rem;
 }
+
+.controller {
+  margin-bottom: 3rem;
+  
+  div {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.switch {
+  padding: 1rem 2rem;
+  border: none;
+  background-color: transparent;
+  color: $color-text-primary-light;
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: $color-skeleton;
+    color: $color-text-primary-dark;
+  }
+  
+  &.active {
+    background-color: $color-skeleton;
+    color: $color-text-primary-dark;
+  }
+}
+
+.content {
+  width: 100%;
+}
+
+
 
 .total {
   font-size: 2rem;

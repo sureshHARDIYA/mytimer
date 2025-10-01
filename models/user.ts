@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-import TimeTrack, { ITimeTrack } from "./time-track";
 import Project, { IProject } from "./project";
+import TimeTrack, { ITimeTrack } from "./time-track";
 
 export interface IUser {
   name: string;
@@ -67,7 +67,15 @@ userSchema.methods.updateTimeTrackWithProject = async function (
   }
   result.title = newTitle;
   if (projectId !== undefined) {
-    result.projectId = projectId ? new mongoose.Schema.Types.ObjectId(projectId) : undefined;
+    if (
+      projectId &&
+      projectId !== "" &&
+      mongoose.Types.ObjectId.isValid(projectId)
+    ) {
+      result.projectId = new mongoose.Types.ObjectId(projectId);
+    } else {
+      result.projectId = undefined;
+    }
   }
   await result.save();
 };

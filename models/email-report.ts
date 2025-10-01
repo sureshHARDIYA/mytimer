@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export interface IEmailReport {
   startDate: Date;
@@ -12,6 +12,6 @@ const emailReportSchema = new mongoose.Schema<IEmailReport>({
 
 const EmailReport: mongoose.Model<IEmailReport> =
   mongoose.models.EmailReport ||
-  mongoose.model<IEmailReport>('EmailReport', emailReportSchema);
+  mongoose.model<IEmailReport>("EmailReport", emailReportSchema);
 
 export default EmailReport;
