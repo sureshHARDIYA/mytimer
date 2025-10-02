@@ -55,6 +55,54 @@
   }
 }
 
+.dateContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  height: 4.4rem;
+  padding: 0 1.2rem 0 4rem;
+  border: 1px solid #d2d0ce;
+  border-radius: 6px;
+  background: white;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+
+  &:focus-within {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+  }
+}
+
+.dateIcon {
+  position: absolute;
+  left: 1.2rem;
+  color: #605e5c;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dateInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  color: #323130;
+  background: transparent;
+  min-width: 0;
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+}
+
+.dateSeparator {
+  color: #605e5c;
+  font-size: 1.4rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 .clearButton {
   position: absolute;
   right: 1rem;

@@ -1,7 +1,7 @@
 import Select from "react-select";
 import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
-import { Search, X, RotateCcw } from "lucide-react";
+import { Search, X, RotateCcw, Calendar } from "lucide-react";
 
 import styles from "./FilterControls.module.scss";
 
@@ -10,6 +10,8 @@ interface FilterControlsProps {
     searchByName: string;
     searchByNotes: string;
     selectedTag: string;
+    startDate?: string;
+    endDate?: string;
   }) => void;
   availableTags: string[];
 }
@@ -21,22 +23,30 @@ const FilterControls: React.FC<FilterControlsProps> = ({
   const [searchByName, setSearchByName] = useState("");
   const [searchByNotes, setSearchByNotes] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   useEffect(() => {
     onFiltersChange({
       searchByName,
       searchByNotes,
       selectedTag,
+      startDate,
+      endDate,
     });
-  }, [searchByName, searchByNotes, selectedTag]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchByName, searchByNotes, selectedTag, startDate, endDate]);
 
   const clearFilters = () => {
     setSearchByName("");
     setSearchByNotes("");
     setSelectedTag("");
+    setStartDate("");
+    setEndDate("");
   };
 
-  const hasActiveFilters = searchByName || searchByNotes || selectedTag;
+  const hasActiveFilters =
+    searchByName || searchByNotes || selectedTag || startDate || endDate;
 
   const tagOptions = [
     { value: "", label: "All Tags" },
@@ -71,7 +81,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             <Search size={16} className={styles.searchIcon} />
             <input
               type="text"
-              placeholder="Search by description..."
+              placeholder="Search title"
               value={searchByName}
               onChange={(e) => setSearchByName(e.target.value)}
               className={styles.searchInput}
@@ -93,7 +103,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             <Search size={16} className={styles.searchIcon} />
             <input
               type="text"
-              placeholder="Search by notes..."
+              placeholder="Notes..."
               value={searchByNotes}
               onChange={(e) => setSearchByNotes(e.target.value)}
               className={styles.searchInput}
@@ -106,6 +116,28 @@ const FilterControls: React.FC<FilterControlsProps> = ({
                 <X size={14} />
               </button>
             )}
+          </div>
+        </div>
+
+        {/* Date Range Filter */}
+        <div className={styles.filterGroup}>
+          <div className={styles.dateContainer}>
+            <Calendar size={16} className={styles.dateIcon} />
+            <input
+              type="date"
+              placeholder="Start date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className={styles.dateInput}
+            />
+            <span className={styles.dateSeparator}>to</span>
+            <input
+              type="date"
+              placeholder="End date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className={styles.dateInput}
+            />
           </div>
         </div>
 

@@ -5,6 +5,8 @@ export interface SearchFilters {
   searchByName: string;
   searchByNotes: string;
   selectedTag: string;
+  startDate?: string;
+  endDate?: string;
 }
 
 export const createFuzzySearch = (timeTracks: ITimeTrack[]) => {
@@ -27,7 +29,29 @@ export const filterTimeTracks = (
 ): ITimeTrack[] => {
   let filteredTracks = [...timeTracks];
 
-  // Apply tag filter first
+  // Apply date range filter first
+  if (filters.startDate || filters.endDate) {
+    filteredTracks = filteredTracks.filter((track) => {
+      const trackStartDate = new Date(track.start);
+      const trackEndDate = new Date(track.end);
+
+      if (filters.startDate && filters.endDate) {
+        const startDate = new Date(filters.startDate);
+        const endDate = new Date(filters.endDate);
+        // Check if track overlaps with the date range
+        return trackStartDate <= endDate && trackEndDate >= startDate;
+      } else if (filters.startDate) {
+        const startDate = new Date(filters.startDate);
+        return trackEndDate >= startDate;
+      } else if (filters.endDate) {
+        const endDate = new Date(filters.endDate);
+        return trackStartDate <= endDate;
+      }
+      return true;
+    });
+  }
+
+  // Apply tag filter
   if (filters.selectedTag) {
     filteredTracks = filteredTracks.filter(
       (track) => track.tag === filters.selectedTag
