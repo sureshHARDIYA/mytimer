@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
-import Header from './Header';
-import Head from 'next/head';
-import { useTimerContext } from '@/hooks/use-store-hooks';
-import { Footer } from './Footer';
-import styles from './Layout.module.scss';
-import { usePathname } from 'next/navigation';
+import React, { ReactNode } from "react";
+import Header from "./Header";
+import Head from "next/head";
+import { useTimerContext } from "@/hooks/use-store-hooks";
+import { Footer } from "./Footer";
+import styles from "./Layout.module.scss";
+import { usePathname } from "next/navigation";
 
 interface Props {
   children: ReactNode;
@@ -20,7 +20,7 @@ const Layout = (props: Props) => {
         <title>
           {timer
             ? documentTitle
-            : 'Time Tracker: Versatile Time Tracking Software for Everyone'}
+            : "Time Bank: Versatile Time Tracking Software for Everyone"}
         </title>
         <meta
           name="description"
@@ -29,7 +29,7 @@ const Layout = (props: Props) => {
       </Head>
       <Header />
       <main>{props.children}</main>
-      <Footer homePage={pathName === '/'} />
+      <Footer homePage={pathName === "/"} />
     </div>
   );
 };

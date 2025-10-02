@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useRouter } from "next/router";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Layout from "./Layout";
 import {
@@ -14,9 +15,16 @@ import { ITimeTrack } from "@/models/time-track";
 import ManualTimeDialog from "./ManualTimeDialog";
 import ProjectCalendar from "./ProjectCalendar";
 import EventDetailsModal from "./EventDetailsModal";
+import FilterControls from "./FilterControls";
 import { useProject } from "@/hooks/use-api-hooks";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import WeeklyPieChart from "../../reports/charts/WeeklyPieChart";
+import ProjectPieChart from "./ProjectPieChart";
+import {
+  filterTimeTracks,
+  getAvailableTags,
+  SearchFilters,
+} from "@/lib/utils/fuzzySearch";
 
 const Project = () => {
   const router = useRouter();
@@ -198,25 +206,131 @@ const OverviewView = ({
 };
 
 const DetailedView = ({ project }: { project: any }) => {
+  const [filters, setFilters] = useState<SearchFilters>({
+    searchByName: "",
+    searchByNotes: "",
+    selectedTag: "",
+  });
+
+  const availableTags = useMemo(() => {
+    return getAvailableTags(project.timeTracks || []);
+  }, [project.timeTracks]);
+
+  const filteredTracks = useMemo(() => {
+    return filterTimeTracks(project.timeTracks || [], filters);
+  }, [project.timeTracks, filters]);
+
+  const totalDuration = useMemo(() => {
+    return calculateTotalDuration(filteredTracks);
+  }, [filteredTracks]);
+
+  const handleFiltersChange = (newFilters: SearchFilters) => {
+    setFilters(newFilters);
+  };
+
   return (
     <div className={styles.detailed}>
-      <p className={styles.total}>
-        Total time spent on this project:
-        <span>{calculateTotalDuration(project.timeTracks || [])}</span>
-      </p>
-      <ul className={styles.list}>
-        {(project.timeTracks || []).map((track: ITimeTrack) => (
-          <li key={track._id.toString()}>
-            <p className={styles.description}>{track.title}</p>
-            <span>
-              Duration:
-              <span className={styles.duration}>
-                {getTrackDuration(new Date(track.start), new Date(track.end))}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className={styles.resultsHeader}
+      >
+        <p className={styles.total}>
+          {filters.searchByName ||
+          filters.searchByNotes ||
+          filters.selectedTag ? (
+            <>
+              Showing {filteredTracks.length} of{" "}
+              {project.timeTracks?.length || 0} tracks
+              <br />
+              <span className={styles.filteredTotal}>
+                Filtered time: <span>{totalDuration}</span>
               </span>
-            </span>
-          </li>
-        ))}
-      </ul>
+            </>
+          ) : (
+            <>
+              Total time spent on this project:
+              <span>{totalDuration}</span>
+            </>
+          )}
+        </p>
+      </motion.div>
+      <FilterControls
+        onFiltersChange={handleFiltersChange}
+        availableTags={availableTags}
+      />
+
+      <motion.ul className={styles.list}>
+        <AnimatePresence mode="popLayout">
+          {filteredTracks.map((track: ITimeTrack, index: number) => (
+            <motion.li
+              key={track._id.toString()}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{
+                duration: 0.3,
+                delay: index * 0.05,
+                ease: "easeOut",
+              }}
+              layout
+            >
+              <div className={styles.trackContent}>
+                <div className={styles.trackInfo}>
+                  <div className={styles.trackHeader}>
+                    <div className={styles.titleWithTag}>
+                      <p className={styles.description}>{track.title}</p>
+                      {track.tag && (
+                        <span className={styles.tag}>{track.tag}</span>
+                      )}
+                    </div>
+                  </div>
+                  {track.notes && <p className={styles.notes}>{track.notes}</p>}
+                  <div className={styles.dateInfo}>
+                    <span className={styles.dateItem}>
+                      {new Date(track.start).toLocaleDateString()}{" "}
+                      {new Date(track.start).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}{" "}
+                      - {new Date(track.end).toLocaleDateString()}{" "}
+                      {new Date(track.end).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.trackDuration}>
+                  <span>
+                    Duration:
+                    <span className={styles.duration}>
+                      {getTrackDuration(
+                        new Date(track.start),
+                        new Date(track.end)
+                      )}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </motion.li>
+          ))}
+        </AnimatePresence>
+      </motion.ul>
+
+      {filteredTracks.length === 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className={styles.noResults}
+        >
+          <p>No time tracks found matching your filters.</p>
+          <p className={styles.noResultsHint}>
+            Try adjusting your search terms or clearing the filters.
+          </p>
+        </motion.div>
+      )}
     </div>
   );
 };
@@ -225,8 +339,8 @@ const ReportView = ({ project }: { project: any }) => {
   const tagUsage = aggregateTagTimeUsage(project.timeTracks || []);
   return (
     <div className={styles.charts}>
-      <div className={styles.pie}>
-        <WeeklyPieChart tagUsage={tagUsage} />
+      <div className={styles.largePie}>
+        <ProjectPieChart tagUsage={tagUsage} />
       </div>
     </div>
   );

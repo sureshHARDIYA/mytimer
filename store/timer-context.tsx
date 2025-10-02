@@ -1,6 +1,6 @@
-import React, { createContext } from 'react';
-import { useTimer } from '@/hooks/use-timer';
-import { formatDurationWithUnits } from '@/lib/utils/date';
+import React, { createContext } from "react";
+import { useTimer } from "@/hooks/use-timer";
+import { formatDurationWithUnits } from "@/lib/utils/date";
 
 type ContextType = {
   time: number;
@@ -15,7 +15,7 @@ export const TimerProvider = ({ children }: { children: React.ReactNode }) => {
   const timerState = useTimer();
   const documentTitle = `${formatDurationWithUnits(
     timerState.time
-  )} • Time Tracker`;
+  )} • Time Bank`;
 
   return (
     <TimerContext.Provider value={{ ...timerState, documentTitle }}>

@@ -25,7 +25,7 @@ const Header = (props: HeaderProps) => {
     <header className={`${styles.header} ${props.isSticky && styles.sticky}`}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          Time Tracker
+          Time Bank
         </Link>
         <nav>
           <ul className={styles.list}>
