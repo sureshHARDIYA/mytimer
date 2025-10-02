@@ -1,8 +1,9 @@
-import React from 'react';
-import * as RadixSelect from '@radix-ui/react-select';
-import styles from './Select.module.scss';
+import React from "react";
+import * as RadixSelect from "@radix-ui/react-select";
 
-import { CheckIcon } from 'lucide-react';
+import styles from "./Select.module.scss";
+
+import { CheckIcon } from "lucide-react";
 
 const Select = ({ children, ...props }: RadixSelect.SelectProps) => {
   return <RadixSelect.Root {...props}>{children}</RadixSelect.Root>;

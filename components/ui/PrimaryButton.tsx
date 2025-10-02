@@ -1,20 +1,20 @@
-import React from 'react';
-import Link from 'next/link';
-import styles from './PrimaryButton.module.scss';
+import React from "react";
+import Link from "next/link";
+import styles from "./PrimaryButton.module.scss";
 
 interface ButtonProps {
   href?: string;
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  disabled?: React.ButtonHTMLAttributes<HTMLButtonElement>['disabled'];
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  disabled?: React.ButtonHTMLAttributes<HTMLButtonElement>["disabled"];
   ariaLabel?: string;
 }
 
 const PrimaryButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const buttonType = props.type || 'button';
+    const buttonType = props.type || "button";
 
     if (props.href) {
       return (
@@ -43,6 +43,6 @@ const PrimaryButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-PrimaryButton.displayName = 'PrimaryButton';
+PrimaryButton.displayName = "PrimaryButton";
 
 export default PrimaryButton;

@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Skeleton.module.scss';
+import React from "react";
+import styles from "./Skeleton.module.scss";
 
 const Skeleton = ({
   className,

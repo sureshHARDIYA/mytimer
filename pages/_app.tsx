@@ -1,5 +1,4 @@
 import "@/styles/globals.scss";
-import "@/styles/react-select.css";
 import { NextPage } from "next";
 import { Inter } from "next/font/google";
 import type { AppProps } from "next/app";

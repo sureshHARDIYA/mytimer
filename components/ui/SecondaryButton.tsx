@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
-import Link from 'next/link';
-import styles from './SecondaryButton.module.scss';
+import React, { ReactNode } from "react";
+import Link from "next/link";
+import styles from "./SecondaryButton.module.scss";
 
 interface ButtonProps {
   href: string;

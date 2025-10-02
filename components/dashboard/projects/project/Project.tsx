@@ -156,6 +156,7 @@ const Project = () => {
           setSelectedEvent(null);
         }}
         event={selectedEvent}
+        projectId={projectId}
       />
 
       {/* Manual Time Dialog */}

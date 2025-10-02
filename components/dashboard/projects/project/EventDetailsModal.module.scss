@@ -83,8 +83,17 @@
 .actions {
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
   padding-top: 1.5rem;
   border-top: 1px solid #e1e5e9;
+}
+
+.deleteButton {
+  background: #d13438 !important;
+  
+  &:hover {
+    background: #a72d30 !important;
+  }
 }
 
 .closeButton {
