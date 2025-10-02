@@ -157,29 +157,134 @@
 // Responsive design
 @media (max-width: 1200px) {
   .filterRow {
-    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
     gap: 1.2rem;
   }
 
-  .filterGroup:last-child {
-    grid-column: 1 / -1;
-    justify-self: start;
+  .filterGroup {
+    flex: 1;
+    min-width: 200px;
   }
 }
 
 @media (max-width: 768px) {
   .filterContainer {
-    padding: 1.2rem;
+    padding: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 
   .filterRow {
-    grid-template-columns: 1fr;
-    gap: 1.6rem;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
+  .filterGroup {
+    width: 100%;
+  }
+
+  .searchContainer {
+    width: 100%;
+  }
+
+  .searchInput {
+    font-size: 1.6rem;
+    height: 4.8rem;
+    padding: 1.2rem 1.2rem 1.2rem 4.2rem;
+  }
+
+  .searchIcon {
+    left: 1.4rem;
+    size: 18px;
+  }
+
+  .dateContainer {
+    flex-direction: column;
+    height: auto;
+    padding: 1.2rem;
+    gap: 1.2rem;
+    border-radius: 8px;
+  }
+
+  .dateIcon {
+    position: static;
+    align-self: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .dateInput {
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid #d2d0ce;
+    border-radius: 6px;
+    background: white;
+    font-size: 1.6rem;
+    height: 4.8rem;
+  }
+
+  .dateSeparator {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .reactSelect {
+    font-size: 1.6rem;
+  }
 
   .resetButton {
-    justify-self: stretch;
+    width: 100%;
     justify-content: center;
+    height: 4.8rem;
+    font-size: 1.6rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filterContainer {
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .filterRow {
+    gap: 1.2rem;
+  }
+
+  .searchInput {
+    font-size: 1.6rem;
+    height: 5rem;
+    padding: 1.4rem 1.4rem 1.4rem 4.4rem;
+  }
+
+  .searchIcon {
+    left: 1.5rem;
+    size: 20px;
+  }
+
+  .dateContainer {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .dateInput {
+    font-size: 1.6rem;
+    height: 5rem;
+    padding: 1.4rem;
+  }
+
+  .dateSeparator {
+    font-size: 1.4rem;
+    padding: 0.6rem 0;
+  }
+
+  .reactSelect {
+    font-size: 1.6rem;
+  }
+
+  .resetButton {
+    height: 5rem;
+    font-size: 1.6rem;
+    border-radius: 6px;
   }
 }

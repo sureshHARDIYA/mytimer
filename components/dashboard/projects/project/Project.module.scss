@@ -322,3 +322,181 @@
     color: $color-text-primary-light;
   }
 }
+
+// Mobile responsive design
+@media (max-width: 768px) {
+  .projectHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .title {
+    font-size: 2.4rem;
+    margin-bottom: 0;
+    line-height: 1.2;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+  }
+
+  .tab {
+    padding: 1.4rem 1.6rem;
+    font-size: 1.6rem;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .trackContent {
+    padding: 1.6rem;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+  }
+
+  .trackHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .titleWithTag {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .trackTitle {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  // Hide only tags, notes, and dates in mobile - keep title visible
+  .list li .tagsContainer {
+    display: none !important;
+  }
+
+  .list li .manualTag {
+    display: none !important;
+  }
+
+  .list li .notes {
+    display: none !important;
+  }
+
+  .list li .dateInfo {
+    display: none !important;
+  }
+
+  .list li .dateItem {
+    display: none !important;
+  }
+
+  .trackDuration {
+    font-size: 1.4rem;
+    padding: 0.6rem 1rem;
+    margin-top: 0.8rem;
+    align-self: flex-start;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .paginationButton {
+    width: 100%;
+    justify-content: center;
+    padding: 1.4rem 1.6rem;
+    font-size: 1.6rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectHeader {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .tabs {
+    gap: 0.6rem;
+  }
+
+  .tab {
+    padding: 1.2rem 1.4rem;
+    font-size: 1.5rem;
+    border-radius: 6px;
+  }
+
+  .trackContent {
+    padding: 1.4rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+  }
+
+  .trackHeader {
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .titleWithTag {
+    gap: 0.8rem;
+  }
+
+  .trackTitle {
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  // Hide only tags, notes, and dates in small mobile - keep title visible
+  .list li .tagsContainer {
+    display: none !important;
+  }
+
+  .list li .manualTag {
+    display: none !important;
+  }
+
+  .list li .notes {
+    display: none !important;
+  }
+
+  .list li .dateInfo {
+    display: none !important;
+  }
+
+  .list li .dateItem {
+    display: none !important;
+  }
+
+  .trackDuration {
+    font-size: 1.3rem;
+    padding: 0.5rem 0.8rem;
+    margin-top: 0.6rem;
+  }
+
+  .pagination {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .paginationButton {
+    padding: 1.2rem 1.4rem;
+    font-size: 1.5rem;
+    border-radius: 6px;
+  }
+}
