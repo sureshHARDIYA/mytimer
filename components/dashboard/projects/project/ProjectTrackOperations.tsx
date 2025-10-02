@@ -2,29 +2,35 @@ import { toast } from "sonner";
 import React, { useState } from "react";
 import { MoreVertical } from "lucide-react";
 
-import ProjectForm from "./ProjectForm";
 import Modal from "@/components/ui/Modal";
-import { IProject } from "@/models/project";
+import EditForm from "../../reports/EditForm";
 import Dropdown from "@/components/ui/Dropdown";
-import styles from "../SharedStyles.module.scss";
-import { useProjects } from "@/hooks/use-api-hooks";
-import { deleteProject } from "@/lib/utils/services";
+import { ITimeTrack } from "@/models/time-track";
 import AlertDialog from "@/components/ui/AlertDialog";
+import { deleteTimeTrack } from "@/lib/utils/services";
 
-const ProjectOperations = ({ project }: { project: IProject }) => {
+import styles from "../../SharedStyles.module.scss";
+
+const ProjectTrackOperations = ({
+  timeTrack,
+  mutateProject,
+}: {
+  timeTrack: ITimeTrack;
+  mutateProject: () => void;
+}) => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const { mutate } = useProjects();
 
-  const deleteProjectHandler = async () => {
+  const deleteTimeTrackHandler = async () => {
     try {
-      await deleteProject(project._id!.toString());
-      mutate();
-      toast.success("Project deleted successfully");
+      await deleteTimeTrack(timeTrack._id.toString());
+      mutateProject(); // Use project-specific mutate
+      toast.success("Time Track deleted successfully");
     } catch (error) {
       toast.error("An error occurred");
     }
   };
+
   return (
     <>
       <Dropdown>
@@ -49,18 +55,20 @@ const ProjectOperations = ({ project }: { project: IProject }) => {
       </Dropdown>
       <AlertDialog open={showDeleteAlert} setOpen={setShowDeleteAlert}>
         <AlertDialog.Content
-          title="Are you sure you want to delete this project?"
+          title="Are you sure you want to delete this time track?"
           description="This action can&#39;t be undone."
-          action="Delete project"
-          onAction={deleteProjectHandler}
+          action="Delete time track"
+          onAction={deleteTimeTrackHandler}
         />
       </AlertDialog>
       <Modal open={showEditModal} onOpenChange={setShowEditModal}>
-        <Modal.Content title="Edit project" className={styles.modal}>
-          <ProjectForm
-            operationType="edit"
-            initialProject={project}
-            afterSave={() => setShowEditModal(false)}
+        <Modal.Content title="Edit title" className={styles.modal}>
+          <EditForm
+            initialTrack={timeTrack}
+            afterSave={() => {
+              setShowEditModal(false);
+              mutateProject(); // Use project-specific mutate
+            }}
           />
         </Modal.Content>
       </Modal>
@@ -68,4 +76,4 @@ const ProjectOperations = ({ project }: { project: IProject }) => {
   );
 };
 
-export default ProjectOperations;
+export default ProjectTrackOperations;

@@ -1,10 +1,11 @@
-import React from 'react';
-import ProjectItem from './ProjectItem';
-import { useProjects } from '@/hooks/use-api-hooks';
-import { IProject } from '@/models/project';
-import ErrorMessage from '@/components/ui/ErrorMessage';
-import EmptyPlaceholder from '../EmptyPlaceholder';
-import styles from '../SharedStyles.module.scss';
+import React from "react";
+
+import ProjectItem from "./ProjectItem";
+import { IProject } from "@/models/project";
+import styles from "../SharedStyles.module.scss";
+import { useProjects } from "@/hooks/use-api-hooks";
+import EmptyPlaceholder from "../EmptyPlaceholder";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
 const ProjectList = () => {
   const { projects, isLoading, error } = useProjects();

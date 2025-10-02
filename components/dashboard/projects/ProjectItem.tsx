@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import Skeleton from '@/components/ui/Skeleton';
-import ProjectOperations from './ProjectOperations';
-import styles from './ProjectItem.module.scss';
-import { IProject } from '@/models/project';
-import { formatDate } from '@/lib/utils/date';
+import React from "react";
+import Link from "next/link";
+import Skeleton from "@/components/ui/Skeleton";
+import ProjectOperations from "./ProjectOperations";
+import styles from "./ProjectItem.module.scss";
+import { IProject } from "@/models/project";
+import { formatDate } from "@/lib/utils/date";
 
 interface ProjectProps {
   project: IProject;

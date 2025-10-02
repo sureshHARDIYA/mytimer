@@ -1,18 +1,18 @@
-import React from 'react';
-import { projectSchema, ProjectSchemaType } from '@/lib/validations/project';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import { createProject, editProject } from '@/lib/utils/services';
-import { toast } from 'sonner';
-import { useProjects } from '@/hooks/use-api-hooks';
-import { IProject } from '@/models/project';
-import styles from '../SharedStyles.module.scss';
-import Loader from '@/components/ui/Loader';
+import React from "react";
+import { projectSchema, ProjectSchemaType } from "@/lib/validations/project";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import { createProject, editProject } from "@/lib/utils/services";
+import { toast } from "sonner";
+import { useProjects } from "@/hooks/use-api-hooks";
+import { IProject } from "@/models/project";
+import styles from "../SharedStyles.module.scss";
+import Loader from "@/components/ui/Loader";
 
 interface ProjectFormProps {
   afterSave: () => void;
-  operationType: 'create' | 'edit';
+  operationType: "create" | "edit";
   initialProject?: IProject;
 }
 
@@ -31,17 +31,17 @@ const ProjectForm = ({
     formState: { errors, isSubmitting },
   } = useForm<ProjectSchemaType>({
     resolver: zodResolver(projectSchema),
-    mode: 'all',
+    mode: "all",
     defaultValues:
-      operationType === 'edit'
+      operationType === "edit"
         ? { projectTitle: initialProject?.projectTitle }
-        : { projectTitle: '' },
+        : { projectTitle: "" },
   });
 
   async function onSubmit(enteredData: ProjectSchemaType) {
     const { projectTitle } = enteredData;
     if (
-      operationType === 'edit' &&
+      operationType === "edit" &&
       projectTitle === initialProject?.projectTitle
     ) {
       afterSave();
@@ -53,25 +53,25 @@ const ProjectForm = ({
         (project: IProject) => project.projectTitle === projectTitle
       )
     ) {
-      setError('projectTitle', {
-        type: 'manual',
-        message: 'A project with this title already exists.',
+      setError("projectTitle", {
+        type: "manual",
+        message: "A project with this title already exists.",
       });
       return;
     }
 
     try {
-      if (operationType === 'create') {
+      if (operationType === "create") {
         await createProject({ projectTitle });
-        toast.success('Project saved successfully');
+        toast.success("Project saved successfully");
       } else {
         await editProject(initialProject!._id!.toString(), projectTitle);
-        toast.success('Project updated successfully');
+        toast.success("Project updated successfully");
       }
       mutate();
       reset();
     } catch (error) {
-      toast.error('An error occurred. Please try again');
+      toast.error("An error occurred. Please try again");
     }
     afterSave();
   }
@@ -80,7 +80,7 @@ const ProjectForm = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.control}>
         <input
-          {...register('projectTitle')}
+          {...register("projectTitle")}
           type="text"
           placeholder="Project Title"
         />
@@ -92,10 +92,10 @@ const ProjectForm = ({
         <PrimaryButton type="submit" disabled={isSubmitting}>
           {isSubmitting ? (
             <Loader />
-          ) : operationType === 'create' ? (
-            'Create'
+          ) : operationType === "create" ? (
+            "Create"
           ) : (
-            'Update'
+            "Update"
           )}
         </PrimaryButton>
         {errors.root?.serverError && (

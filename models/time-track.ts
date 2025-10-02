@@ -9,6 +9,7 @@ export interface ITimeTrack {
   notes?: string;
   start: Date;
   end: Date;
+  trackingType: "manual" | "system_tracked";
   addProject: (projectId: string) => Promise<void>;
   addTag: (tag: string) => Promise<void>;
   removeTag: (tag: string) => Promise<void>;
@@ -26,6 +27,12 @@ const timeTrackSchema = new mongoose.Schema<ITimeTrack>({
   notes: { type: String },
   start: { type: Date, required: true },
   end: { type: Date, required: true },
+  trackingType: {
+    type: String,
+    enum: ["manual", "system_tracked"],
+    default: "system_tracked",
+    required: true,
+  },
 });
 
 timeTrackSchema.methods.addProject = async function (projectId: string) {

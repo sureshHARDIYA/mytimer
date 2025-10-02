@@ -69,6 +69,7 @@ const ManualTimeDialog: React.FC<ManualTimeDialogProps> = ({
         end: endDate.toISOString(),
         projectId: projectId,
         notes: description.trim(),
+        trackingType: "manual",
       };
 
       await sendTimeTrack(timeTrackData);

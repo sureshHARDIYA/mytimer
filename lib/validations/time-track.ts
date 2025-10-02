@@ -9,6 +9,7 @@ export const timeTrackSchema = z.object({
   projectId: objectIdValidation.optional(),
   tag: z.string().optional(),
   notes: z.string().max(1000).optional(),
+  trackingType: z.enum(["manual", "system_tracked"]).optional(),
 });
 
 export const timeTrackUpdateSchema = z.object({

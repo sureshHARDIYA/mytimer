@@ -45,7 +45,7 @@ export async function createProject(project: IProject) {
   return response.data;
 }
 export async function editProject(projectId: string, newTitle: string) {
-  const response = await axios.patch(projectsApiUrl + projectId, {
+  const response = await axios.patch(projectsApiUrl + "/" + projectId, {
     projectTitle: newTitle,
   });
   return response.data;
@@ -63,6 +63,7 @@ export type TimeTrackRecording = {
   tag?: string;
   projectId?: string;
   notes?: string;
+  trackingType?: "manual" | "system_tracked";
 };
 
 export async function sendTimeTrack(timeTrackData: TimeTrackRecording) {

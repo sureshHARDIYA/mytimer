@@ -58,6 +58,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             value={tagOptions.find((option) => option.value === selectedTag)}
             onChange={(option) => setSelectedTag(option?.value || "")}
             className={styles.reactSelect}
+            classNamePrefix="react-select"
             placeholder="Select tag..."
             isClearable
             isSearchable

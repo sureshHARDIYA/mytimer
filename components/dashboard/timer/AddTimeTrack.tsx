@@ -23,6 +23,7 @@ const AddTimeTrack = () => {
       title: currentTrack.title.trim() || "(no description)",
       start: startDate.toISOString(),
       end: endDate.toISOString(),
+      trackingType: "system_tracked",
     };
     if (currentTrack.tag) {
       requestData = { ...requestData, tag: currentTrack.tag };

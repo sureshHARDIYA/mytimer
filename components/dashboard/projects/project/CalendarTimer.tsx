@@ -67,6 +67,7 @@ const CalendarTimer: React.FC<CalendarTimerProps> = ({
         projectId: projectId,
         tag: timeTrackContext.tag,
         notes: timeTrackContext.notes,
+        trackingType: "system_tracked",
       };
 
       await sendTimeTrack(timeTrackData);
