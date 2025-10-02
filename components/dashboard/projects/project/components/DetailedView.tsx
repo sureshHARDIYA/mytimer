@@ -32,7 +32,11 @@ const DetailedView = ({ project, mutateProject }: DetailedViewProps) => {
   }, [project.timeTracks]);
 
   const filteredTracks = useMemo(() => {
-    return filterTimeTracks(project.timeTracks || [], filters);
+    const filtered = filterTimeTracks(project.timeTracks || [], filters);
+    // Sort by start date descending (latest first)
+    return filtered.sort((a, b) => {
+      return new Date(b.start).getTime() - new Date(a.start).getTime();
+    });
   }, [project.timeTracks, filters]);
 
   const totalDuration = useMemo(() => {

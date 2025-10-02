@@ -34,12 +34,12 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
     try {
       setIsDeleting(true);
       await deleteTimeTrack(event._id.toString());
-      
+
       // Refresh the project data to update the calendar
       if (projectId) {
         await globalMutate(`/api/user/projects/${projectId}`);
       }
-      
+
       onClose();
     } catch (error) {
       console.error("Error deleting time track:", error);
@@ -130,16 +130,14 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           </div>
 
           <div className={styles.actions}>
-            <PrimaryButton 
-              onClick={handleDelete} 
+            <PrimaryButton
+              onClick={handleDelete}
               disabled={isDeleting}
               className={styles.deleteButton}
             >
               {isDeleting ? "Deleting..." : "Delete"}
             </PrimaryButton>
-            <PrimaryButton onClick={onClose}>
-              Close
-            </PrimaryButton>
+            <PrimaryButton onClick={onClose}>Close</PrimaryButton>
           </div>
         </div>
       </Modal.Content>

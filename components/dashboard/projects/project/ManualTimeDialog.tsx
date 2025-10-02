@@ -106,8 +106,8 @@ const ManualTimeDialog: React.FC<ManualTimeDialogProps> = ({
     if (isOpen && selectedDate) {
       // Format date in local timezone to avoid timezone offset issues
       const year = selectedDate.getFullYear();
-      const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-      const day = String(selectedDate.getDate()).padStart(2, '0');
+      const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
+      const day = String(selectedDate.getDate()).padStart(2, "0");
       const dateStr = `${year}-${month}-${day}`;
       setStartTime(`${dateStr}T09:00`);
       setEndTime(`${dateStr}T17:00`);
@@ -115,8 +115,8 @@ const ManualTimeDialog: React.FC<ManualTimeDialogProps> = ({
       // Use local timezone for current date as well
       const now = new Date();
       const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const day = String(now.getDate()).padStart(2, "0");
       const dateStr = `${year}-${month}-${day}`;
       setStartTime(`${dateStr}T09:00`);
       setEndTime(`${dateStr}T17:00`);

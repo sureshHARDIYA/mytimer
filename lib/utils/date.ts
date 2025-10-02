@@ -180,7 +180,10 @@ export const groupTracksByDayOfWeek = (
 
   return Object.keys(dayMap).map((day) => ({
     day,
-    records: dayMap[day],
+    // Sort records within each day by start time descending (latest first)
+    records: dayMap[day].sort((a, b) => {
+      return new Date(b.start).getTime() - new Date(a.start).getTime();
+    }),
   }));
 };
 

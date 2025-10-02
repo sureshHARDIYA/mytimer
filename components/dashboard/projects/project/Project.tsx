@@ -14,6 +14,7 @@ import DetailedView from "./components/DetailedView";
 import ReportView from "./components/ReportView";
 import EmptyProject from "./components/EmptyProject";
 import ProjectOperations from "../ProjectOperations";
+import ProjectCheckInButton from "./ProjectCheckInButton";
 
 const Project = () => {
   const router = useRouter();
@@ -91,7 +92,13 @@ const Project = () => {
       <div className={styles.container}>
         <div className={styles.projectHeader}>
           <h2 className={styles.title}>{project.projectTitle}</h2>
-          <ProjectOperations project={project} />
+          <div className={styles.headerActions}>
+            <ProjectCheckInButton
+              projectId={projectId}
+              projectTitle={project.projectTitle}
+            />
+            <ProjectOperations project={project} />
+          </div>
         </div>
 
         {!project.timeTracks || project.timeTracks.length === 0 ? (

@@ -1,0 +1,28 @@
+@import '@/styles/variables';
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 0.6rem;
+}
+
+.outlinedButton {
+  background: transparent !important;
+  border: 2px solid $color-primary !important;
+  color: $color-primary !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: rgba($color-primary, 0.1) !important;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

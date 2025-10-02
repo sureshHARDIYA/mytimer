@@ -8,6 +8,7 @@ import { SessionProvider } from "next-auth/react";
 import Layout from "@/components/layouts/Layout";
 import { TimerProvider } from "@/store/timer-context";
 import { TimeTrackProvider } from "@/store/time-track-context";
+import { ProjectTimerProvider } from "@/store/project-timer-context";
 
 export const inter = Inter({ subsets: ["latin"] });
 
@@ -24,18 +25,20 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <SessionProvider session={pageProps.session}>
-      <TimerProvider>
-        <TimeTrackProvider>
-          <style jsx global>
-            {`
-              html {
-                font-family: ${inter.style.fontFamily};
-              }
-            `}
-          </style>
-          {getLayout(<Component {...pageProps} />)}
-        </TimeTrackProvider>
-      </TimerProvider>
+      <ProjectTimerProvider>
+        <TimerProvider>
+          <TimeTrackProvider>
+            <style jsx global>
+              {`
+                html {
+                  font-family: ${inter.style.fontFamily};
+                }
+              `}
+            </style>
+            {getLayout(<Component {...pageProps} />)}
+          </TimeTrackProvider>
+        </TimerProvider>
+      </ProjectTimerProvider>
     </SessionProvider>
   );
 }

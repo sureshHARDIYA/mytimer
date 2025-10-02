@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import PrimaryButton from "../ui/PrimaryButton";
 import SecondaryButton from "../ui/SecondaryButton";
 import UserNav from "./UserNav";
+import GlobalTimerIndicator from "./GlobalTimerIndicator";
 
 interface HeaderProps {
   isSticky?: boolean;
@@ -29,6 +30,11 @@ const Header = (props: HeaderProps) => {
         </Link>
         <nav>
           <ul className={styles.list}>
+            {status === "authenticated" && (
+              <li className={styles.item}>
+                <GlobalTimerIndicator />
+              </li>
+            )}
             {status === "unauthenticated" && (
               <li className={styles.item}>
                 <SecondaryButton
