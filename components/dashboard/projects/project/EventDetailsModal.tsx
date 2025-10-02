@@ -1,20 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSWRConfig } from "swr";
 import { ITimeTrack } from "@/models/time-track";
 import Modal from "@/components/ui/Modal";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import { deleteTimeTrack } from "@/lib/utils/services";
 import styles from "./EventDetailsModal.module.scss";
 
 interface EventDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
   event: ITimeTrack | null;
+  projectId?: string;
 }
 
 const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   isOpen,
   onClose,
   event,
+  projectId,
 }) => {
+  const { mutate: globalMutate } = useSWRConfig();
+  const [isDeleting, setIsDeleting] = useState(false);
+
   if (!event) return null;
+
+  const handleDelete = async () => {
+    if (!event._id) return;
+
+    if (!confirm("Are you sure you want to delete this time entry?")) {
+      return;
+    }
+
+    try {
+      setIsDeleting(true);
+      await deleteTimeTrack(event._id.toString());
+      
+      // Refresh the project data to update the calendar
+      if (projectId) {
+        await globalMutate(`/api/user/projects/${projectId}`);
+      }
+      
+      onClose();
+    } catch (error) {
+      console.error("Error deleting time track:", error);
+      alert("Failed to delete time entry. Please try again.");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   const formatDateTime = (dateString: string | Date) => {
     const date = new Date(dateString);
@@ -97,9 +130,16 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           </div>
 
           <div className={styles.actions}>
-            <button className={styles.closeButton} onClick={onClose}>
+            <PrimaryButton 
+              onClick={handleDelete} 
+              disabled={isDeleting}
+              className={styles.deleteButton}
+            >
+              {isDeleting ? "Deleting..." : "Delete"}
+            </PrimaryButton>
+            <PrimaryButton onClick={onClose}>
               Close
-            </button>
+            </PrimaryButton>
           </div>
         </div>
       </Modal.Content>
