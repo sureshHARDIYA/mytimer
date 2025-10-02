@@ -45,6 +45,42 @@
   width: 100%;
 }
 
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.summary {
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.calendarSection {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.timerSection {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.charts {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pie {
+  max-width: 400px;
+  width: 100%;
+}
+
 
 
 .total {

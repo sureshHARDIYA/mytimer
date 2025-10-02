@@ -1,6 +1,7 @@
-import React from 'react';
-import Skeleton from '@/components/ui/Skeleton';
-import styles from './ProjectSkeleton.module.scss';
+import React from "react";
+
+import Skeleton from "@/components/ui/Skeleton";
+import styles from "./ProjectSkeleton.module.scss";
 
 const ProjectSkeleton = () => {
   return (

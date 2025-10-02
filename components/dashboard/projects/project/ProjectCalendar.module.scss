@@ -1,0 +1,312 @@
+@import '@/styles/variables';
+
+.calendar {
+  background: #fff;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-size: 16px;
+  padding: 16px;
+  
+  // FullCalendar styles
+  :global(.fc) {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    
+    .fc-toolbar {
+      background: #f8f9fa;
+      border-bottom: 1px solid #e1e5e9;
+      padding: 1.6rem 2rem;
+      
+      .fc-toolbar-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #323130;
+      }
+      
+      .fc-button {
+        background: #0078d4;
+        border: 1px solid #0078d4;
+        color: white;
+        font-weight: 500;
+        border-radius: 4px;
+        padding: 0.8rem 1.6rem;
+        font-size: 1.4rem;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background: #106ebe;
+          border-color: #106ebe;
+        }
+        
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.2);
+        }
+        
+        &.fc-button-active {
+          background: #106ebe;
+          border-color: #106ebe;
+        }
+      }
+      
+      .fc-today-button {
+        background: white;
+        color: #0078d4;
+        border: 1px solid #e1e5e9;
+        
+        &:hover {
+          background: #f3f2f1;
+          color: #106ebe;
+        }
+      }
+    }
+    
+    .fc-view-harness {
+      background: white;
+    }
+    
+    .fc-daygrid-day {
+      border-color: #e1e5e9;
+      
+      &.fc-day-today {
+        background-color: #f0f8ff;
+        border: 1px solid #0078d4;
+        
+        .fc-daygrid-day-number {
+          color: #0078d4;
+          font-weight: 600;
+        }
+      }
+    }
+    
+    .fc-daygrid-day-number {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #323130;
+      padding: 0.8rem;
+    }
+    
+    .fc-col-header-cell {
+      background: #f3f2f1;
+      border-color: #e1e5e9;
+      
+      .fc-col-header-cell-cushion {
+        color: #605e5c;
+        font-weight: 600;
+        font-size: 1.4rem;
+        padding: 1.2rem 0.8rem;
+      }
+    }
+    
+    .fc-daygrid-event {
+      background: #0078d4;
+      border: none;
+      border-radius: 3px;
+      margin: 0.2rem 0.4rem 0.2rem 0.4rem;
+      font-size: 1rem;
+      
+      .fc-event-title {
+        font-weight: 500;
+      }
+      
+      .fc-event-time {
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+      
+      // Manual track styling
+      &.manual-track {
+        background: #28a745;
+        border-left: 4px solid #1e7e34;
+        
+        .fc-event-title {
+          color: white;
+        }
+      }
+      
+      // System track styling
+      &.system-track {
+        background: #0078d4;
+        border-left: 4px solid #106ebe;
+        
+        .fc-event-title {
+          color: white;
+        }
+      }
+    }
+    
+    .fc-timegrid-event {
+      background: #0078d4;
+      border: none;
+      border-radius: 3px;
+      
+      .fc-event-title {
+        font-weight: 500;
+      }
+      
+      // Manual track styling
+      &.manual-track {
+        background: #28a745;
+        border-left: 4px solid #1e7e34;
+        
+        .fc-event-title {
+          color: white;
+        }
+      }
+      
+      // System track styling
+      &.system-track {
+        background: #0078d4;
+        border-left: 4px solid #106ebe;
+        
+        .fc-event-title {
+          color: white;
+        }
+      }
+    }
+    
+    .fc-list-event {
+      border: 1px solid #e1e5e9;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+      
+      &:hover {
+        background: #f8f9fa;
+      }
+      
+      .fc-list-event-title {
+        font-weight: 500;
+        color: #323130;
+      }
+      
+      .fc-list-event-time {
+        color: #605e5c;
+        font-size: 1.2rem;
+      }
+      
+      // Manual track styling
+      &.manual-track {
+        border-left: 4px solid #28a745;
+        background: #f8fff9;
+        
+        .fc-list-event-title {
+          color: #1e7e34;
+        }
+      }
+      
+      // System track styling
+      &.system-track {
+        border-left: 4px solid #0078d4;
+        background: #f0f8ff;
+        
+        .fc-list-event-title {
+          color: #106ebe;
+        }
+      }
+    }
+    
+    .fc-more-link {
+      color: #0078d4;
+      font-weight: 500;
+      
+      &:hover {
+        color: #106ebe;
+      }
+    }
+    
+    .fc-popover {
+      border: 1px solid #e1e5e9;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      
+      .fc-popover-header {
+        background: #f8f9fa;
+        border-bottom: 1px solid #e1e5e9;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Custom event styling
+.fullCalendarEvent {
+  background: #0078d4 !important;
+  border: none !important;
+  border-radius: 3px !important;
+  color: white !important;
+  font-size: 1rem !important;
+  
+  &:hover {
+    background: #106ebe !important;
+  }
+}
+
+.fullCalendarDay {
+  &.fc-day-today {
+    background-color: #f0f8ff !important;
+    border: 1px solid #0078d4 !important;
+  }
+}
+
+.customEvent {
+  padding: 0.2rem 0.4rem;
+  
+  .eventTitle {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    line-height: 1.2;
+    font-size: 1rem;
+  }
+  
+  .eventTime {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-top: 0.1rem;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+}
+
+.contextMenu {
+  position: fixed;
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  min-width: 18rem;
+  padding: 0.4rem 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contextMenuItem {
+  width: 100%;
+  padding: 1rem 1.6rem;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 1.4rem;
+  color: #323130;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  &:hover {
+    background-color: #f3f2f1;
+    color: #0078d4;
+  }
+
+  &:active {
+    background-color: #e1e5e9;
+  }
+
+  &::before {
+    content: "⏰";
+    font-size: 1.2rem;
+  }
+}
