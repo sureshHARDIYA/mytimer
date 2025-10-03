@@ -97,6 +97,15 @@ npm run dev
 - `/hooks` - Custom React hooks
 - `/types` - TypeScript type definitions
 
+## Architecture & Data Model
+
+For a comprehensive understanding of the application's data structure and entity relationships, see the [Domain Model Documentation](./DOMAIN_MODEL.md). This includes:
+
+- Entity-Relationship Diagram (ERD) with Mermaid
+- Database schema and relationships
+- Application features and technology stack
+- Data flow and system architecture
+
 ## TODO List
 
 ### High Priority
